@@ -27,7 +27,6 @@
 	<a href="blog-list"><span>首页</span><span class="en">Portal</span></a>
 	<a href="blog-life"><span>慢生活</span><span class="en">Life</span></a>
 	<a href="talk-list"><span>碎言碎语</span><span class="en">Doing</span></a>
-	<a href="#"><span>模板分享</span><span class="en">Share</span></a>
 	<a href="#"><span>学无止境</span><span class="en">Learn</span></a></nav> </nav> </header>
 	<article class="blogs">
 	<h1 class="t_nav">

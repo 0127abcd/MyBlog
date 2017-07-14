@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.txw.blog.entities.Article;
 import com.txw.blog.service.BlogService;
+import com.txw.blog.utils.QiniuUtil;
 
 public class BlogAction implements RequestAware, ModelDriven<Article>, Preparable{
 
@@ -106,7 +107,8 @@ public class BlogAction implements RequestAware, ModelDriven<Article>, Preparabl
 		}
 		
 		System.out.println("******************************************************");
-        System.out.println("上传文件:"+img); 
+		System.out.println("上传文件:"+img); 
+		System.out.println("上传文件位置:"+img.getAbsolutePath());     
         System.out.println("上传文件名:"+imgFileName);  
         System.out.println("上传文件类型:"+imgContentType);  
        
@@ -131,13 +133,18 @@ public class BlogAction implements RequestAware, ModelDriven<Article>, Preparabl
      	out.close();
      	in.close();
         
-     	model.setPhoto(dir);
      	
+
+		System.out.println("---------------------Qi Niu Util----------------------");
+		QiniuUtil qiniuUtil = new QiniuUtil();
+//		model.setPhoto("http://osavi2ikz.bkt.clouddn.com/"+qiniuUtil.upload());
+		System.out.println("------------------------------------------------------");
+
 		System.out.println("------------------------------------------------------");
 		System.out.println(model);
 		System.out.println("------------------------------------------------------");
-
-		blogService.saveArticle(model);
+		
+		//blogService.saveArticle(model);
 		
 		return "editCom";
 	}
