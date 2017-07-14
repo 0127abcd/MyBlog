@@ -1,14 +1,11 @@
 package com.txw.blog.actions;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ModelDriven;
@@ -19,8 +16,6 @@ import com.txw.blog.utils.QiniuUtil;
 
 public class BlogAction implements RequestAware, ModelDriven<Article>, Preparable{
 
-	public static final String bucket = "http://osavi2ikz.bkt.clouddn.com/";
-	
 	private BlogService blogService;
 	
 	private Integer max;
@@ -139,7 +134,7 @@ public class BlogAction implements RequestAware, ModelDriven<Article>, Preparabl
 
 		System.out.println("---------------------Qi Niu Util----------------------");
 		QiniuUtil qiniuUtil = new QiniuUtil();
-		model.setPhoto(bucket + qiniuUtil.upload(img.getAbsolutePath()));
+		model.setPhoto(QiniuUtil.bucket + qiniuUtil.upload(img.getAbsolutePath()));
 		System.out.println("------------------------------------------------------");
 		System.out.println(model);
 		System.out.println("------------------------------------------------------");

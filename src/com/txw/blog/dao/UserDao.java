@@ -11,5 +11,11 @@ public class UserDao extends BaseDao{
 		Query query = getSession().createQuery(hql).setString(0, userName);
 		return (User) query.uniqueResult();
 	}
+
+	public User getById(Integer id) {
+		String hql = "FROM User u WHERE u.id = ?";
+		Query query = getSession().createQuery(hql).setInteger(0, id);
+		return (User) query.uniqueResult();
+	}
 	
 }

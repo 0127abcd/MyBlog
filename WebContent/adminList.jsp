@@ -5,15 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>后台登陆</title>
+<title>后台管理</title>
 </head>
 <body>
 		
-	<s:form action="login" method="post">
-		<s:textfield name="userName" label="用户名"></s:textfield>
-		<s:textfield name="password" type="password" label="密码"></s:textfield>
-		<s:submit></s:submit>
-	</s:form>
+	<h1>LIST PAGE</h1>
 		
 		
 </body>

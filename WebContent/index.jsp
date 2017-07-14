@@ -13,35 +13,20 @@
 	%>
 </head>
 <body>
-    <header>
-        <div id="logo">
-            <a href="#"></a>
-        </div>
-        <nav class="topnav">
-            <a  href="#">
-                <span>首页</span>
-                <span class="en">Portal</span>
-            </a>
-            <a  href="blog-life">
-                <span>慢生活</span>
-                <span class="en">Life</span>
-            </a>
-            <a  href="talk-list">
-                <span>碎言碎语</span>
-                <span class="en">Doing</span>
-            </a>
-            <a  href="#">
-                <span>学无止境</span>
-                <span class="en">Learn</span>
-            </a>
-            <a  href="#">
-                <span>关于我</span>
-                <span class="en">Me</span>
-            </a>
-        </nav>
-    </header>
+	<header>
+		<div id="logo">
+			<a href="#"></a>
+		</div>
+		<nav class="topnav">
+			<a href="blog-list"><span>首页</span><span class="en">Portal</span></a> 
+			<a href="blog-life"> <span>慢生活</span> <span class="en">Life</span></a> 
+			<a href="talk-list"> <span>碎言碎语</span> <span class="en">Doing</span></a> 
+			<a href="#"> <span>学无止境</span> <span class="en">Learn</span></a> 
+			<a href="#"> <span>关于我</span> <span class="en">Me</span></a>
+		</nav>
+	</header>
 
-    <div class="banner">
+	<div class="banner">
         <section class="box">
             <ul class="texts">
                 <p>我们不停的翻弄着回忆</p>

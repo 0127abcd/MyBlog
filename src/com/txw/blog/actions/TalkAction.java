@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.Preparable;
 import com.txw.blog.entities.Article;
 import com.txw.blog.entities.Talk;
 import com.txw.blog.service.TalkService;
+import com.txw.blog.utils.QiniuUtil;
 
 public class TalkAction implements RequestAware, ModelDriven<Talk>, Preparable{
 
@@ -51,34 +52,12 @@ public class TalkAction implements RequestAware, ModelDriven<Talk>, Preparable{
 			model.setDate(new Date());
 		}
 		
-		System.out.println("******************************************************");
         System.out.println("上传文件:"+img); 
-        System.out.println("上传文件名:"+imgFileName);  
-        System.out.println("上传文件类型:"+imgContentType);  
        
         if(img != null) {
-	        String path = ServletActionContext.getServletContext().getRealPath("/upload/talk/" + System.currentTimeMillis() +imgFileName);
-	        
-	        String dir = "upload/talk/" + path.substring(path.lastIndexOf("\\")+1, path.length());
-	        
-	        String dir1 = "E:\\Learn\\eclipseworkspace\\MyBlog\\WebContent\\upload\\talk\\" + path.substring(path.lastIndexOf("\\")+1, path.length());
-	        
-	        System.out.println(path);
-	        System.out.println(dir);
-	     	System.out.println("******************************************************");
-	     	
-	     	FileOutputStream out = new FileOutputStream(dir1);
-	     	FileInputStream in = new FileInputStream(img);
-	     	
-	     	byte[] buffer = new byte[1024];
-	     	int len = 0;
-	     	while ((len = in.read(buffer)) != -1) {
-				out.write(buffer, 0, len);
-			}
-	     	out.close();
-	     	in.close();
-	        
-	     	model.setImage(dir);
+        	System.out.println("---------------------Qi Niu Util----------------------");
+    		QiniuUtil qiniuUtil = new QiniuUtil();
+    		model.setImage(QiniuUtil.bucket + qiniuUtil.upload(img.getAbsolutePath()));      
 	     	model.setHasImage(1);
         } else
         	model.setHasImage(0);
@@ -111,8 +90,6 @@ public class TalkAction implements RequestAware, ModelDriven<Talk>, Preparable{
 	}
 	
 	private File img; //上传的文件  
-    private String imgFileName; //文件名称  
-    private String imgContentType;
 
 	public File getImg() {
 		return img;
@@ -120,22 +97,6 @@ public class TalkAction implements RequestAware, ModelDriven<Talk>, Preparable{
 
 	public void setImg(File img) {
 		this.img = img;
-	}
-
-	public String getImgFileName() {
-		return imgFileName;
-	}
-
-	public void setImgFileName(String imgFileName) {
-		this.imgFileName = imgFileName;
-	}
-
-	public String getImgContentType() {
-		return imgContentType;
-	}
-
-	public void setImgContentType(String imgContentType) {
-		this.imgContentType = imgContentType;
 	}
 
 }

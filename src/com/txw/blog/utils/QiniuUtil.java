@@ -19,7 +19,7 @@ public class QiniuUtil {
 	private static final String SECRET_KEY = "YMGGaVJWjAX9KHrbAk4HfF6GH8c6GaDO7mxj-Fuj";
 	// 要上传的空间--目前用的测试空间--上线要修改
 	private static final String bucketname = "txwblog";
-//	private static final String bucketname = "ot266cmmt.bkt.clouddn.com";
+	public static final String bucket = "http://osavi2ikz.bkt.clouddn.com/";
 
 	/** 指定保存到七牛的文件名--同名上传会报错 {"error":"file exists"} */
 	/**
@@ -30,7 +30,6 @@ public class QiniuUtil {
 	// String key = "hi.jpg";
 	// 上传文件的路径
 	// String FilePath ="src/11.jpg";
-	//String FilePath = "E:/Learn/eclipseworkspace/MyBlog/WebContent/upload/14997351479691.jpg";
 	// 密钥配置
 	private Auth auth;
 	// 创建上传对象
