@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="blogDao" class="com.txw.blog.dao.BlogDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="blogService" class="com.txw.blog.service.BlogService">
+		<property name="blogDao" ref="blogDao"></property>
+	</bean>
+ 
+	<bean id="blogAction" class="com.txw.blog.actions.BlogAction"
+			scope="prototype">
+		<property name="blogService" ref="blogService"></property>
+	</bean>
+
+
+	<bean id="talkDao" class="com.txw.blog.dao.TalkDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="talkService" class="com.txw.blog.service.TalkService">
+		<property name="talkDao" ref="talkDao"></property>
+	</bean>
+ 
+	<bean id="talkAction" class="com.txw.blog.actions.TalkAction"
+			scope="prototype">
+		<property name="talkService" ref="talkService"></property>
+	</bean>
+	
+	
+	<bean id="userDao" class="com.txw.blog.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userService" class="com.txw.blog.service.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+ 
+	<bean id="userAction" class="com.txw.blog.actions.UserAction"
+			scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+</beans>
