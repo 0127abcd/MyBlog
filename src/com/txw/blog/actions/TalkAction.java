@@ -57,7 +57,7 @@ public class TalkAction implements RequestAware, ModelDriven<Talk>, Preparable{
         if(img != null) {
         	System.out.println("---------------------Qi Niu Util----------------------");
     		QiniuUtil qiniuUtil = new QiniuUtil();
-    		model.setImage(QiniuUtil.bucket + qiniuUtil.upload(img.getAbsolutePath()));      
+    		model.setImage(QiniuUtil.BUCKET + qiniuUtil.upload(img.getAbsolutePath()));      
 	     	model.setHasImage(1);
         } else
         	model.setHasImage(0);

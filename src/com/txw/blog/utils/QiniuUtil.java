@@ -1,14 +1,18 @@
 package com.txw.blog.utils;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import com.google.gson.Gson;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
+import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.storage.model.FetchRet;
 import com.qiniu.util.Auth;
 
 public class QiniuUtil {
@@ -18,8 +22,8 @@ public class QiniuUtil {
 	private static final String ACCESS_KEY = "X-0rJi9N6wGdjMV2Akv9SBbVfIZ62Z1VcM-B74W4";
 	private static final String SECRET_KEY = "YMGGaVJWjAX9KHrbAk4HfF6GH8c6GaDO7mxj-Fuj";
 	// 要上传的空间--目前用的测试空间--上线要修改
-	private static final String bucketname = "txwblog";
-	public static final String bucket = "http://osavi2ikz.bkt.clouddn.com/";
+	private static final String BUCKET_NAME = "txwblog";
+	public static final String BUCKET = "http://osavi2ikz.bkt.clouddn.com/";
 
 	/** 指定保存到七牛的文件名--同名上传会报错 {"error":"file exists"} */
 	/**
@@ -36,7 +40,7 @@ public class QiniuUtil {
 
 	// 简单上传，使用默认策略，只需要设置上传的空间名就可以了
 	public String getUpToken() {
-		return auth.uploadToken(bucketname);
+		return auth.uploadToken(BUCKET_NAME);
 	}
 
 	public String upload(String FilePath) throws IOException {
@@ -70,4 +74,16 @@ public class QiniuUtil {
 		return null;
 	}
 
+	public String uploadFromHttp(String url) {
+		auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+		Configuration cfg = new Configuration(Zone.zone2());
+		BucketManager bucketManager = new BucketManager(auth, cfg);
+		try {
+		    FetchRet putret = bucketManager.fetch(url, BUCKET_NAME);
+		    return putret.key;
+		} catch (QiniuException e1) {
+		    e1.printStackTrace();
+		}
+		return null;
+	}
 }

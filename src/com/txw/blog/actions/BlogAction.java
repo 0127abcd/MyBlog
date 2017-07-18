@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.txw.blog.entities.Article;
 import com.txw.blog.service.BlogService;
+import com.txw.blog.utils.ImageSrc;
 import com.txw.blog.utils.QiniuUtil;
 
 public class BlogAction implements RequestAware, ModelDriven<Article>, Preparable{
@@ -134,10 +135,17 @@ public class BlogAction implements RequestAware, ModelDriven<Article>, Preparabl
 
 		System.out.println("---------------------Qi Niu Util----------------------");
 		QiniuUtil qiniuUtil = new QiniuUtil();
-		model.setPhoto(QiniuUtil.bucket + qiniuUtil.upload(img.getAbsolutePath()));
+		model.setPhoto(QiniuUtil.BUCKET + qiniuUtil.upload(img.getAbsolutePath()));
 		System.out.println("------------------------------------------------------");
 		System.out.println(model);
-		System.out.println("------------------------------------------------------");
+		List<String> imgsrc = ImageSrc.getImageSrc(model.getContent());
+		for (String src : imgsrc) {
+			System.out.println("SRC:" + src);
+			System.out.println(model.getContent());
+			String realName = qiniuUtil.uploadFromHttp(src);
+			model.setContent(model.getContent().replaceAll("<img src=\\\"(.*?)\\\"", "<img src=\""+QiniuUtil.BUCKET+realName+"\""));
+			System.out.println(model.getContent());
+		}
 		
 		blogService.saveArticle(model);
 		
