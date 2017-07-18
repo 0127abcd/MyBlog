@@ -50,6 +50,7 @@
 	<action name="admin-*" class="com.txw.blog.actions.UserAction" method="{1}">
 		<result name="login">/adminLogin.jsp</result>
 		<result name="list">/adminList.jsp</result>
+		<result name="loginFail" type="redirect">/admin-login</result>
 	</action>
 	
 	</package>	

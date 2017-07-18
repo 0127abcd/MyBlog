@@ -4,20 +4,28 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.RequestAware;
 
-import com.opensymphony.xwork2.ModelDriven;
-import com.opensymphony.xwork2.Preparable;
 import com.txw.blog.entities.User;
+import com.txw.blog.service.BlogService;
+import com.txw.blog.service.TalkService;
 import com.txw.blog.service.UserService;
 
-public class UserAction implements RequestAware, ModelDriven<User>, Preparable{
+public class UserAction implements RequestAware{
 
 	private UserService userService;
-
+	private BlogService blogService;
+	private TalkService talkService;
+	
 	private String userName;
 	private String password;
 	
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public void setBlogService(BlogService blogService) {
+		this.blogService = blogService;
+	}
+	public void setTalkService(TalkService talkService) {
+		this.talkService = talkService;
 	}
 	
 	public void setPassword(String password) {
@@ -40,32 +48,15 @@ public class UserAction implements RequestAware, ModelDriven<User>, Preparable{
 	}
 	
 	public String list() {
-		if(model.getId() == null) 
-			return "login";
-		if(!model.getPassword().equals(password))
-			return "login";
-		System.out.println(model);
+		User model = new User(null, userName, password);
+		User userAdmin = userService.getByUserName(userName);
+		if(userAdmin == null)
+			return "loginFail";
+		if(!model.getPassword().equals(userAdmin.getPassword()))
+			return "loginFail";
+		
+		request.put("blogs", blogService.getAll());
+		request.put("User", userAdmin);
 		return "list";
 	}
-	
-	public void prepareList() {
-		if(userName == null){
-			System.out.println("New User");
-			model = new User();
-		}else{
-			model = userService.getByUserName(userName);
-			System.out.println("GET USER FROM DB");
-		}
-	}
-
-	private User model;
-	
-	@Override
-	public User getModel() {
-		return model;
-	}
-
-	@Override
-	public void prepare() throws Exception {}
-	
 }

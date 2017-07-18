@@ -42,6 +42,8 @@
 	<bean id="userAction" class="com.txw.blog.actions.UserAction"
 			scope="prototype">
 		<property name="userService" ref="userService"></property>
+		<property name="blogService" ref="blogService"></property>
+		<property name="talkService" ref="talkService"></property>
 	</bean>
 
 </beans>
