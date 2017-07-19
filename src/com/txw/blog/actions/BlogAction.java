@@ -89,6 +89,10 @@ public class BlogAction implements RequestAware, ModelDriven<Article>, Preparabl
 		return "detail";
 	}
 	
+	public String aboutMe() {
+		return "aboutMe";
+	}
+	
 	@Override
 	public void prepare() throws Exception {}
 	

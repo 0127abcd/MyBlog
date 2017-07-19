@@ -23,13 +23,13 @@
 		<div id="logo">
 			<a href="/"></a>
 		</div>
-		<nav class="topnav" id="topnav"> 
+		<nav class="topnav" id="topnav">
 			<a href="blog-list"><span>首页</span><span class="en">Portal</span></a> 
 			<a href="blog-life"> <span>慢生活</span> <span class="en">Life</span></a> 
 			<a href="talk-list"> <span>碎言碎语</span> <span class="en">Doing</span></a> 
 			<a href="#"> <span>学无止境</span> <span class="en">Learn</span></a> 
-			<a href="#"> <span>关于我</span> <span class="en">Me</span></a>
-			</nav> </nav> 
+			<a href="blog-aboutMe"> <span>关于我</span> <span class="en">Me</span></a>
+		</nav>
 	</header>
 	<article class="blogs">
 	<h1 class="t_nav">

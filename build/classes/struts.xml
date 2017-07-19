@@ -38,6 +38,7 @@
 		<result name="edit">/edit.jsp</result>
 		<result name="editCom" type="redirect">/blog-list</result>
 		<result name="life">/life.jsp</result>
+		<result name="aboutMe">/aboutMe.jsp</result>
 	</action>
 	
 	<action name="talk-*" class="com.txw.blog.actions.TalkAction" method="{1}">

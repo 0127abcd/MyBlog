@@ -22,7 +22,7 @@
 			<a href="blog-life"> <span>慢生活</span> <span class="en">Life</span></a> 
 			<a href="talk-list"> <span>碎言碎语</span> <span class="en">Doing</span></a> 
 			<a href="#"> <span>学无止境</span> <span class="en">Learn</span></a> 
-			<a href="#"> <span>关于我</span> <span class="en">Me</span></a>
+			<a href="blog-aboutMe"> <span>关于我</span> <span class="en">Me</span></a>
 		</nav>
 	</header>
 
